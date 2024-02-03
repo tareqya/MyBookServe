@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "202292596936",
+    "project_id": "mybookserve",
+    "storage_bucket": "mybookserve.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202292596936:android:d6dc066c530d19939395fd",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIG72G4swDbpEpaM3zqWNwnNhT5YDkpe4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

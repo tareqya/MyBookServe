@@ -1,0 +1,44 @@
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/untitled_design__3_"
+    tools:context=".HomeFragment">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="176dp"
+        android:layout_height="149dp"
+        android:src="@drawable/helene"
+        android:layout_gravity="center_horizontal"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Category"
+            android:layout_marginTop="160dp"
+            android:textSize="20dp"
+            android:textColor="@color/navy"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="303dp"
+            android:layout_height="395dp"
+            android:layout_marginTop="200dp"
+            android:scrollbars="vertical" />
+
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

@@ -1,0 +1,41 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/untitled_design__3_"
+    tools:context=".HomeFragment">
+
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/imageView3"
+        android:layout_width="176dp"
+        android:layout_height="149dp"
+        android:src="@drawable/helene"
+        android:layout_gravity="center_horizontal"/>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imageView3"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/navy_border"
+            android:focusable="false"
+            app:closeIcon="@drawable/search"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search..."
+            app:searchHintIcon="@null"
+            app:searchIcon="@drawable/search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fHome_RV_books" />
+
+</RelativeLayout>
