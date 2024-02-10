@@ -2,15 +2,20 @@ package com.example.myapplication.data;
 
 import com.google.firebase.firestore.Exclude;
 
-public class User extends FirebaseKey{
+import java.io.Serializable;
+
+public class User extends FirebaseKey implements Serializable {
 
     private String name;
     private String email;
     private String phone;
     private String imagePath;
     private String imageUrl;
+    private int score;
 
-    public User(){}
+    public User(){
+        score = 0;
+    }
 
     public String getName() {
         return name;
@@ -56,5 +61,14 @@ public class User extends FirebaseKey{
     public User setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
+    }
+
+    public User setUser(int score){
+        this.score = score;
+        return this;
+    }
+
+    public int getScore(){
+        return score;
     }
 }

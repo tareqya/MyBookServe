@@ -7,21 +7,11 @@
     android:background="@drawable/untitled_design__3_"
     tools:context=".HomeFragment">
 
-    <ImageView
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:id="@+id/imageView3"
-        android:layout_width="176dp"
-        android:layout_height="149dp"
-        android:src="@drawable/helene"
-        android:layout_gravity="center_horizontal"/>
-
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/imageView3"
             android:layout_marginTop="10dp"
             android:background="@drawable/navy_border"
             android:focusable="false"
@@ -31,9 +21,34 @@
             app:searchHintIcon="@null"
             app:searchIcon="@drawable/search" />
 
+        <LinearLayout
+            android:id="@+id/categories_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/search"
+            >
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_1"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="type1"
+                android:layout_margin="5dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_2"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="type2"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="10dp"
-            android:layout_below="@id/search"
+            android:layout_below="@id/categories_wrapper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/fHome_RV_books" />

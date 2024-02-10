@@ -8,9 +8,9 @@
         android:icon="@drawable/housefr"/>
 
     <item
-        android:id="@+id/category"
-        android:title="Category"
-        android:icon="@drawable/categoryfr"
+        android:id="@+id/addBook"
+        android:title="Add Book"
+        android:icon="@drawable/baseline_add_24"
         />
 
     <item

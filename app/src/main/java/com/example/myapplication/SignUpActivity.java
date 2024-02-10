@@ -52,6 +52,11 @@ public class SignUpActivity extends AppCompatActivity {
 
                 }
             }
+
+            @Override
+            public void onUserFetchDataComplete(User user) {
+
+            }
         });
 
         database.setAuthCallBack(new AuthCallBack() {

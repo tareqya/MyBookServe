@@ -6,13 +6,11 @@
     android:layout_width="match_parent"
     android:background="@drawable/untitled_design__3_"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".UploadActivity">
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         app:cardCornerRadius="30dp"
@@ -37,7 +35,7 @@
             <ImageView
                 android:id="@+id/uploadImage"
                 android:layout_width="242dp"
-                android:layout_height="185dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"
@@ -46,7 +44,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/uploadBook"
+                android:id="@+id/bookName"
                 android:background="@drawable/navy_border"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
@@ -57,7 +55,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:id="@+id/uploadDesc"
+                android:id="@+id/bookDesc"
                 android:background="@drawable/navy_border"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
@@ -68,14 +66,18 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/uploadLang"
+                android:id="@+id/bookLang"
                 android:background="@drawable/navy_border"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
                 android:hint="Enter language"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/navy"/>
-
+            <Spinner
+                android:id="@+id/bookCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
