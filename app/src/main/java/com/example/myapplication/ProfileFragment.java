@@ -59,7 +59,9 @@ public class ProfileFragment extends Fragment {
         updateProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, EditProfileActivity.class);
+                intent.putExtra("USER", currentUser);
+                startActivity(intent);
             }
         });
 

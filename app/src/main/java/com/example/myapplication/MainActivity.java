@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVars() {
-        homeFragment = new HomeFragment();
+        homeFragment = new HomeFragment(this);
         profileFragment = new ProfileFragment(this);
         addBookFragment = new AddBookFragment(this);
         getSupportFragmentManager().beginTransaction().add(R.id.home_frame_home, homeFragment).commit();

@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.myapplication.calback.BookCallBack;
+import com.example.myapplication.data.Book;
+import com.example.myapplication.data.Comment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,88 +31,62 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AddComentActivity extends AppCompatActivity {
 
-    ImageView uploadReviewImage;
-    Button saveReviewButton;
-    EditText uploadReviewDesc;
-    String imageURL;
-    Uri uri;
+    private Button saveReviewButton;
+    private EditText uploadReviewDesc;
+    private Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_coment);
 
-        uploadReviewImage = findViewById(R.id.uploadIReview);
-        uploadReviewDesc = findViewById(R.id.uploadDesc);
-        saveReviewButton = findViewById(R.id.saveButton);
+        Intent intent = getIntent();
+        Book book = (Book) intent.getSerializableExtra("BOOK");
 
-        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            Intent data = result.getData();
-                            uri = data.getData();
-                            uploadReviewImage.setImageURI(uri);
-                        } else {
-                            Toast.makeText(AddComentActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-        );
-
-        uploadReviewImage.setOnClickListener(new View.OnClickListener() {
+        database = new Database();
+        database.setBookCallBack(new BookCallBack() {
             @Override
-            public void onClick(View view) {
-                Intent photoPicker = new Intent(Intent.ACTION_PICK);
-                photoPicker.setType("image/*");
-                activityResultLauncher.launch(photoPicker);
+            public void onFetchBooksComplete(ArrayList<Book> books) {
+
+            }
+
+            @Override
+            public void onBookUploadComplete(Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(AddComentActivity.this, "comment saved successfully", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else{
+                    String err = task.getException().getMessage().toString();
+                    Toast.makeText(AddComentActivity.this, err, Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+
+        uploadReviewDesc = findViewById(R.id.uploadDesc);
+        saveReviewButton = findViewById(R.id.saveButton);
 
         saveReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveReviewData();
+                if(uploadReviewDesc.getText().toString().isEmpty()){
+                    Toast.makeText(AddComentActivity.this, "Your opinion is required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Comment comment = new Comment();
+                comment.setOpinion(uploadReviewDesc.getText().toString());
+                comment.setUid(database.getCurrentUser().getUid());
+                book.addComment(comment);
+                database.saveBook(book);
             }
         });
     }
 
-    public void saveReviewData() {
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Review Images")
-                .child(uri.getLastPathSegment());
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddComentActivity.this);
-        builder.setCancelable(false);
-        builder.setView(R.layout.bottomsheetlayout);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isComplete());
-                Uri urlImage = uriTask.getResult();
-                imageURL = urlImage.toString();
-                uploadReviewData();
-                dialog.dismiss();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                dialog.dismiss();
-            }
-        });
-    }
-
-    public void uploadReviewData() {}
 
 
 

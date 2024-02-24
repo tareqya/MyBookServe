@@ -8,7 +8,7 @@
     tools:context=".HomeFragment">
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/search"
+            android:id="@+id/searchView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -22,27 +22,44 @@
             app:searchIcon="@drawable/search" />
 
         <LinearLayout
+            android:gravity="center"
             android:id="@+id/categories_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/search"
+            android:layout_below="@id/searchView"
             >
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_1"
+                android:id="@+id/chip_Horror"
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="type1"
+                android:text="Horror"
                 android:layout_margin="5dp"/>
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_2"
+                android:id="@+id/chip_Adventure"
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="type2"
+                android:text="Adventure"
+                android:layout_margin="5dp"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_Travel"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Travel"
+                android:layout_margin="5dp"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_Romance"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Romance"
                 android:layout_margin="5dp"/>
         </LinearLayout>
 

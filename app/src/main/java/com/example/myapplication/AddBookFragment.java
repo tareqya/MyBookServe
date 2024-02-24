@@ -39,22 +39,9 @@ import java.util.Random;
 public class AddBookFragment extends Fragment {
     public final int SCORE_PER_BOOK = 100;
     public static String[] categories = {
-            "Fiction",
-            "Non-fiction",
-            "Mystery",
-            "Fantasy",
             "Romance",
-            "Thriller",
             "Horror",
             "Adventure",
-            "Biography",
-            "Autobiography",
-            "Memoir",
-            "Poetry",
-            "Self-help",
-            "Business",
-            "Science",
-            "History",
             "Travel"};
     private ImageView uploadImage;
     private EditText bookName;
@@ -150,7 +137,10 @@ public class AddBookFragment extends Fragment {
         String ext = Generic.getFileExtension(((Activity) context), selectedImageUri);
         String imagePath = "Books/"+uid+"_"+number+"."+ext;
         database.uploadImage(selectedImageUri, imagePath);
+        Random rnd = new Random();
+        int rate = rnd.nextInt(4-1)+1;
         Book book = new Book()
+                .setRate(rate)
                 .setCategory(category)
                 .setImagePath(imagePath)
                 .setDescription(bookDesc.getText().toString())

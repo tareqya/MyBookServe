@@ -16,14 +16,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -134,16 +137,47 @@ public class Database {
     }
 
     public void saveBook(Book book) {
-        this.db.collection(BOOKS_TABLE).document().set(book).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                bookCallBack.onBookUploadComplete(task);
-            }
-        });
+        if(book.getKey() == null){
+            this.db.collection(BOOKS_TABLE).document().set(book).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    bookCallBack.onBookUploadComplete(task);
+                }
+            });
+        }else{
+            this.db.collection(BOOKS_TABLE).document(book.getKey()).set(book).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    bookCallBack.onBookUploadComplete(task);
+                }
+            });
+        }
+
     }
 
     public void updateUserScore(String uid, int score){
         this.db.collection(USERS_TABLE).document(uid)
                 .update("score", FieldValue.increment(score));
+    }
+
+    public void fetchBooks(){
+        this.db.collection(BOOKS_TABLE).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                ArrayList<Book> books = new ArrayList<>();
+                for(DocumentSnapshot dataSnapshot: value.getDocuments()){
+                    Book book = dataSnapshot.toObject(Book.class);
+                    if(book.getImagePath() != null){
+                        String imageUrl = downloadImageUrl(book.getImagePath());
+                        book.setImageUrl(imageUrl);
+                    }
+                    book.setKey(dataSnapshot.getId());
+                    books.add(book);
+
+                }
+
+                bookCallBack.onFetchBooksComplete(books);
+            }
+        });
     }
 }

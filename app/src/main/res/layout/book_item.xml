@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/restaurantItem_IV_image"
+            android:id="@+id/bookItem_IV_image"
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:src="@drawable/username"
@@ -23,12 +23,12 @@
             />
 
         <TextView
-            android:id="@+id/restaurantItem_TV_name"
+            android:id="@+id/bookItem_TV_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Book Name"
             android:maxLines="1"
-            android:layout_below="@+id/restaurantItem_IV_image"
+            android:layout_below="@+id/bookItem_IV_image"
             android:layout_centerHorizontal="true"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -38,7 +38,7 @@
             android:id="@+id/book_RB_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/restaurantItem_TV_name"
+            android:layout_below="@id/bookItem_TV_name"
             android:isIndicator="true"
             android:numStars="4"
             android:rating="3.5"

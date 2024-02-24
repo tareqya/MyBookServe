@@ -10,12 +10,6 @@
     android:gravity="center"
     tools:context=".EditProfileActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="222dp"
-        android:layout_height="133dp"
-        app:srcCompat="@drawable/helene" />
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +18,7 @@
         app:cardElevation="20dp">
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -39,7 +34,37 @@
                 android:textColor="@color/navy"
                 android:textSize="36sp"
                 android:textStyle="bold" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profileEdit_ConstraintLayout_profileImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileEdit_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/baseline_person_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.536"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.049"/>
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/profileEdit_FBTN_uploadImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fabSize="mini"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/baseline_add_a_photo_24"
+                    app:tint="@color/black"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <EditText
                 android:id="@+id/editName"
                 android:layout_width="match_parent"
@@ -53,41 +78,16 @@
                 android:textColor="@color/navy" />
 
             <EditText
-                android:id="@+id/editEmail"
+                android:id="@+id/editPhone"
                 android:layout_width="match_parent"
-                android:drawableLeft="@drawable/email"
+                android:drawableLeft="@drawable/baseline_local_phone_24"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/navy_border"
                 android:drawablePadding="8dp"
-                android:hint="Email"
+                android:hint="Phone number"
                 android:padding="8dp"
                 android:textColor="@color/navy" />
-
-            <EditText
-                android:id="@+id/editUsername"
-                android:layout_width="match_parent"
-                android:drawableLeft="@drawable/username"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/navy_border"
-                android:drawablePadding="8dp"
-                android:hint="Username"
-                android:padding="8dp"
-                android:textColor="@color/navy" />
-
-            <EditText
-                android:id="@+id/editPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:drawableLeft="@drawable/password"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/navy_border"
-                android:drawablePadding="8dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/saveButton"
