@@ -3,47 +3,66 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="180dp"
-    android:layout_height="200dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     app:cardCornerRadius="20dp"
     android:elevation="8dp"
     app:cardElevation="8dp"
     android:layout_margin="10dp">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/bookItem_IV_image"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:src="@drawable/username"
-            android:scaleType="fitXY"
-            />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/bookItem_IV_image"
+                android:layout_centerVertical="true"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/username"
+                android:scaleType="fitXY"
+                android:layout_marginStart="10dp"
+                />
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/bookItem_TV_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="Book Name"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
 
-        <TextView
-            android:id="@+id/bookItem_TV_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Book Name"
-            android:maxLines="1"
-            android:layout_below="@+id/bookItem_IV_image"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            />
+            <TextView
+                android:id="@+id/bookItem_TV_description"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Description Book"
+                android:textColor="#d0d0d0" />
+            </LinearLayout>
+        </LinearLayout>
 
         <RatingBar
             android:id="@+id/book_RB_rate"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/bookItem_TV_name"
             android:isIndicator="true"
-            android:numStars="4"
+            android:numStars="5"
             android:rating="3.5"
             android:scaleX="0.5"
             android:scaleY="0.5" />
 
-    </RelativeLayout>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

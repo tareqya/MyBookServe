@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.calback.BookCallBack;
@@ -90,7 +91,7 @@ public class HomeFragment extends Fragment {
                 openCommentScreen(book);
             }
         });
-        fHome_RV_books.setLayoutManager(new GridLayoutManager(context, 2));
+        fHome_RV_books.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         fHome_RV_books.setHasFixedSize(true);
         fHome_RV_books.setItemAnimator(new DefaultItemAnimator());
         fHome_RV_books.setAdapter(bookAdapter);
@@ -129,7 +130,7 @@ public class HomeFragment extends Fragment {
                         openCommentScreen(book);
                     }
                 });
-                fHome_RV_books.setLayoutManager(new GridLayoutManager(context, 2));
+                fHome_RV_books.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
                 fHome_RV_books.setHasFixedSize(true);
                 fHome_RV_books.setItemAnimator(new DefaultItemAnimator());
                 fHome_RV_books.setAdapter(bookAdapter);
