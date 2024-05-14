@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onUserFetchDataComplete(User user) {
                 profileFragment.setUser(user);
+                addBookFragment.setUser(user);
             }
         });
 

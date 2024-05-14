@@ -13,6 +13,7 @@ public class Book extends FirebaseKey implements Serializable {
     private String imageUrl;
     private String description;
     private double rate;
+    private String contact;
     private ArrayList<Comment> comments;
 
     public Book() {
@@ -94,5 +95,14 @@ public class Book extends FirebaseKey implements Serializable {
     @Exclude
     public void addComment(Comment comment){
         this.comments.add(comment);
+    }
+
+    public Book setContact(String contact) {
+        this.contact = contact;
+        return this;
+    }
+
+    public String getContact() {
+        return contact;
     }
 }

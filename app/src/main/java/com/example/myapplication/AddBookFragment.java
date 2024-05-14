@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.calback.BookCallBack;
 import com.example.myapplication.data.Book;
+import com.example.myapplication.data.User;
 import com.google.android.gms.tasks.Task;
 
 import java.io.FileNotFoundException;
@@ -52,7 +53,7 @@ public class AddBookFragment extends Fragment {
     private Context context;
     private Database database;
     private Uri selectedImageUri;
-
+    private User currentUser;
 
     public AddBookFragment(Context context) {
        this.context = context;
@@ -139,13 +140,19 @@ public class AddBookFragment extends Fragment {
         database.uploadImage(selectedImageUri, imagePath);
         Random rnd = new Random();
         int rate = rnd.nextInt(4-1)+1;
+
+        String contact = currentUser.getEmail();
+        if(currentUser.getPhone() != null)
+            contact = currentUser.getPhone();
+
         Book book = new Book()
                 .setRate(rate)
                 .setCategory(category)
                 .setImagePath(imagePath)
                 .setDescription(bookDesc.getText().toString())
                 .setName(bookName.getText().toString())
-                .setLanguage(bookLang.getText().toString());
+                .setLanguage(bookLang.getText().toString())
+                .setContact(contact);
         database.saveBook(book);
     }
 
@@ -239,4 +246,8 @@ public class AddBookFragment extends Fragment {
                     }
                 }
             });
+
+    public void setUser(User user) {
+        this.currentUser = user;
+    }
 }

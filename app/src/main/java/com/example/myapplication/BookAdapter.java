@@ -44,6 +44,9 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         bookViewHolder.book_RB_rate.setRating((float)book.getRate());
         bookViewHolder.bookItem_TV_name.setText(book.getName());
         bookViewHolder.bookItem_TV_description.setText(book.getDescription());
+
+        bookViewHolder.bookItem_TV_contact.setText(book.getContact());
+
         Glide.with(context).load(book.getImageUrl()).into(bookViewHolder.bookItem_IV_image);
     }
 
@@ -61,12 +64,14 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public TextView bookItem_TV_name;
         public RatingBar book_RB_rate;
         public TextView bookItem_TV_description;
+        public TextView bookItem_TV_contact;
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
             bookItem_IV_image = itemView.findViewById(R.id.bookItem_IV_image);
             bookItem_TV_name = itemView.findViewById(R.id.bookItem_TV_name);
             book_RB_rate = itemView.findViewById(R.id.book_RB_rate);
             bookItem_TV_description = itemView.findViewById(R.id.bookItem_TV_description);
+            bookItem_TV_contact = itemView.findViewById(R.id.bookItem_TV_contact);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
